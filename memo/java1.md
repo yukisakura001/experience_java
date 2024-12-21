@@ -367,7 +367,7 @@ public class Hello {
 }
 ```
 
-## コマンドライン変数の場合
+# コマンドライン変数の場合
 
 `java Hello.java name`で起動した場合
 
@@ -378,3 +378,66 @@ public class Hello {
     }
 }
 ```
+
+# 複数ファイルに分割する場合
+
+```
+📦java
+ ┣ 📂java1_mult
+ ┃ ┣ 📜CalcLogic.class
+ ┃ ┗ 📜CalcLogic.java
+ ┣ 📜Calc.java
+```
+
+- 呼び出される側のJavaファイルはjavacでclassファイルを生成しておく必要がある？（未調査）
+
+## Calc.java
+
+```java
+import java1_mult.CalcLogic;
+
+public class Calc {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 20;
+        int total = CalcLogic.tasu(a, b);
+        int delta = CalcLogic.hiku(a, b);
+        System.out.println("tasu=" + total + " hiku=" + delta);
+
+    }
+}
+
+```
+
+## java1_mult/CalcLogic.java
+
+```java
+package java1_mult;
+
+public class CalcLogic {
+    public static int tasu(int a, int b) {
+        return (a + b);
+    }
+
+    public static int hiku(int a, int b) {
+        return (a - b);
+    }
+}
+
+```
+
+## ルール
+
+- 同じフォルダ内ならモジュールの指定なく呼べる
+- 別のフォルダの場合はパッケージとして名付ける必要がある？
+- importで呼び出せなくてもファイル内で直接パスを指定して呼び出せる
+
+# 主要な標準パッケージ
+
+| `java.lang` | 基本的なクラス郡。import命令無しで呼べる。（Systemのように） |
+| ----------- | ------------------------------------------------------------ |
+| `java.util` | 便利なクラス群                                               |
+| `java.math` | 数学系のクラス群                                             |
+| `java.net`  | ネット接続系のクラス群                                       |
+| `java.io`   | ファイル管理など、データ逐次維持処理のデータ群               |
+
