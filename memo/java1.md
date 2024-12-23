@@ -440,4 +440,3 @@ public class CalcLogic {
 | `java.math` | 数学系のクラス群                                             |
 | `java.net`  | ネット接続系のクラス群                                       |
 | `java.io`   | ファイル管理など、データ逐次維持処理のデータ群               |
-
